@@ -2,6 +2,7 @@ package com.example.happygraduation
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,14 +23,42 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        var tombolTekan = findViewById<Button>(R.id.button)
-        var teksTampil = findViewById<TextView>(R.id.textView)
+        val diceImage: ImageView = findViewById(R.id.imageView)
+        val diceImage2: ImageView = findViewById(R.id.imageView2)
+        val tombolTekan: Button = findViewById(R.id.button)
         tombolTekan.setOnClickListener{
-            var angka = (1..10).random()
-            teksTampil.text = angka.toString()
+            var angka = (1..6).random()
+            val drawableResource = when (angka) {
+                1 -> R.drawable.dice_1
+                2 -> R.drawable.dice_2
+                3 -> R.drawable.dice_3
+                4 -> R.drawable.dice_4
+                5 -> R.drawable.dice_5
+                else -> R.drawable.dice_6
+            }
+            diceImage.setImageResource(drawableResource)
+            diceImage.contentDescription = angka.toString()
+            var angka2 = (1..6).random()
+            val drawableResource2 = when (angka2) {
+                1 -> R.drawable.dice_1
+                2 -> R.drawable.dice_2
+                3 -> R.drawable.dice_3
+                4 -> R.drawable.dice_4
+                5 -> R.drawable.dice_5
+                else -> R.drawable.dice_6
+            }
+            diceImage2.setImageResource(drawableResource2)
+            diceImage2.contentDescription = angka.toString()
+
+
+
+
+
+
         }
     }
 }
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
